@@ -66,30 +66,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function doctorMatches(card) {
 
-    const department = normalize(
-      card.dataset.department
-    );
+    const doctorDepartment =
+      normalize(card.dataset.department);
 
-    const name = normalize(
-      card.dataset.name
-    );
+    const doctorName =
+      normalize(card.dataset.name);
 
-    const searchData = normalize(
-      card.dataset.search
-    );
+    const doctorSearchData =
+      normalize(card.dataset.search);
 
-    const searchTerm = normalize(
-      searchInput ? searchInput.value : ""
-    );
+    const searchTerm =
+      normalize(
+        searchInput
+          ? searchInput.value
+          : ""
+      );
 
 
     /* ---------------------------------------------
-       Department filter
+       Department
        --------------------------------------------- */
 
     const matchesDepartment =
       activeFilter === "all" ||
-      department === activeFilter;
+      doctorDepartment === activeFilter;
 
 
     /* ---------------------------------------------
@@ -98,9 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const matchesSearch =
       !searchTerm ||
-      name.includes(searchTerm) ||
-      department.includes(searchTerm) ||
-      searchData.includes(searchTerm);
+      doctorName.includes(searchTerm) ||
+      doctorDepartment.includes(searchTerm) ||
+      doctorSearchData.includes(searchTerm);
 
 
     return (
@@ -276,58 +276,139 @@ document.addEventListener("DOMContentLoaded", () => {
 
   filterButtons.forEach(button => {
 
-    button.addEventListener(
-      "click",
-      () => {
+    button.addEventListener("click", () => {
 
-        activeFilter =
-          normalize(
-            button.dataset.filter
-          );
+      /* ---------------------------------------------
+         Read the selected department
+         --------------------------------------------- */
 
-
-        /* ---------------------------------------------
-           Reset pagination
-           --------------------------------------------- */
-
-        visibleLimit =
-          DOCTORS_PER_LOAD;
+      const selectedDepartment =
+        normalize(button.dataset.filter);
 
 
-        /* ---------------------------------------------
-           Update active button
-           --------------------------------------------- */
+      /* ---------------------------------------------
+         Store selected department
+         --------------------------------------------- */
 
-        filterButtons.forEach(item => {
-
-          const isActive =
-            item === button;
+      activeFilter = selectedDepartment;
 
 
-          item.classList.toggle(
-            "active",
-            isActive
-          );
+      /* ---------------------------------------------
+         Reset pagination
+         --------------------------------------------- */
+
+      visibleLimit = DOCTORS_PER_LOAD;
 
 
-          item.classList.toggle(
-            "pill--active",
-            isActive
-          );
+      /* ---------------------------------------------
+         Update active pill
+         --------------------------------------------- */
+
+      filterButtons.forEach(pill => {
+
+        const isSelected =
+          pill === button;
 
 
-          item.setAttribute(
-            "aria-pressed",
-            String(isActive)
-          );
-
-        });
+        pill.classList.toggle(
+          "active",
+          isSelected
+        );
 
 
-        filterDoctors();
+        pill.classList.toggle(
+          "pill--active",
+          isSelected
+        );
 
-      }
+
+        pill.setAttribute(
+          "aria-pressed",
+          String(isSelected)
+        );
+
+      });
+
+
+      /* ---------------------------------------------
+         Filter doctors
+         --------------------------------------------- */
+
+      filterDoctors();
+
+    });
+
+  });
+
+
+  /* =====================================================
+     SERVICE → DOCTOR DEPARTMENT
+     ===================================================== */
+
+  document.addEventListener("click", (event) => {
+
+    const service = event.target.closest(
+      ".service-card[data-department]"
     );
+
+    if (!service) return;
+
+    const department =
+      normalize(service.dataset.department);
+
+    if (!department) return;
+
+    /* ---------------------------------------------
+       Find matching doctor pill
+       --------------------------------------------- */
+
+    const matchingPill = Array.from(filterButtons).find(
+      pill =>
+        normalize(pill.dataset.filter) === department
+    );
+
+    if (!matchingPill) {
+      console.warn(
+        `No doctor filter found for: ${department}`
+      );
+      return;
+    }
+
+    /* ---------------------------------------------
+       Activate the pill
+       --------------------------------------------- */
+
+    activeFilter = department;
+
+    visibleLimit = DOCTORS_PER_LOAD;
+
+    filterButtons.forEach(pill => {
+
+      const isSelected =
+        pill === matchingPill;
+
+      pill.classList.toggle(
+        "active",
+        isSelected
+      );
+
+      pill.classList.toggle(
+        "pill--active",
+        isSelected
+      );
+
+      pill.setAttribute(
+        "aria-pressed",
+        String(isSelected)
+      );
+
+    });
+
+    /* ---------------------------------------------
+       Apply doctor filter
+       --------------------------------------------- */
+
+    filterDoctors();
 
   });
 
