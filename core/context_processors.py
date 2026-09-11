@@ -22,7 +22,6 @@ def dashboard_navigation(request):
     # }
 
     # Temporary role detection.
-    # Replace this later with your actual User/Profile role system.
     if request.user.is_staff:
         navigation = get_admin_navigation()
 

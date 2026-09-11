@@ -2,13 +2,8 @@
 
 <section class="md-patient-card shadow-panel">
 
-    <img
-        src="{% static 'images/patient-avatar.jpg' %}"
-        alt="Patient {{ patient.name }}"
-        class="md-patient-card__photo"
-        width="512"
-        height="512"
-    >
+    <img src="{% static 'images/patient-avatar.jpg' %}" alt="Patient {{ patient.name }}" class="md-patient-card__photo"
+        width="512" height="512">
 
     <div class="md-patient-card__body">
 
@@ -42,13 +37,6 @@
         <dl class="md-info-grid">
 
             <div class="md-info-grid__item">
-                <dt>Age &amp; Gender</dt>
-                <dd>
-                    {{ patient.age }}, {{ patient.gender }}
-                </dd>
-            </div>
-
-            <div class="md-info-grid__item">
                 <dt>DOB</dt>
                 <dd>
                     {{ patient.date_of_birth }}
@@ -56,16 +44,23 @@
             </div>
 
             <div class="md-info-grid__item">
-                <dt>Blood Type</dt>
+                <dt>Age</dt>
                 <dd>
-                    {{ patient.blood_type }}
+                    {{ patient.age }}
                 </dd>
             </div>
 
             <div class="md-info-grid__item">
-                <dt>Occupation</dt>
+                <dt>Gender</dt>
                 <dd>
-                    {{ patient.occupation }}
+                    {{ patient.gender }}
+                </dd>
+            </div>
+
+            <div class="md-info-grid__item">
+                <dt>Blood Type</dt>
+                <dd>
+                    {{ patient.blood_type }}
                 </dd>
             </div>
 
@@ -88,4 +83,3 @@
     </div>
 
 </section>
-
