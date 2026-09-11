@@ -1,0 +1,21 @@
+{% extends "patient/base.html" %}
+
+{% block patient_title %}
+    Patient Dashboard | Medicare
+{% endblock %}
+
+{% block content %}
+
+<section class="patient-page">
+
+    <div class="md-top-grid">
+
+        {% include "patient/sections/patient_summary.html" %}
+
+        {% include "patient/sections/patient_banner.html" %}
+
+    </div>
+
+</section>
+
+{% endblock %}

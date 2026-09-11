@@ -1,0 +1,774 @@
+/* ==========================================================================
+   Medicare — Patient Dashboard
+   Patient-specific components
+   ========================================================================== */
+
+
+/* ==========================================================================
+   Patient Header Section
+   ========================================================================== */
+
+.md-top-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.md-patient-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  border: 1px solid var(--dashboard-border);
+  background: var(--dashboard-card);
+  border-radius: var(--dashboard-radius);
+
+  padding: 1rem;
+}
+
+.md-patient-card__photo {
+  width: 6rem;
+  height: 6rem;
+
+  border-radius: var(--dashboard-radius);
+
+  object-fit: cover;
+
+  animation:
+    scale-in
+    0.6s
+    cubic-bezier(0.2, 0.8, 0.2, 1)
+    both;
+}
+
+.md-patient-card__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.md-patient-card__name-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin-bottom: 1rem;
+}
+
+.md-patient-card__name-row h2 {
+  margin: 0;
+
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.status-info {
+  border-radius: var(--dashboard-radius-pill);
+
+  background: oklch(0.94 0.034 190);
+
+  padding: 0.2rem 0.55rem;
+
+  color: oklch(0.42 0.078 190);
+
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.md-patient-card__contacts {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.5rem 1.25rem;
+
+  margin-bottom: 1rem;
+
+  font-size: 0.75rem;
+  color: var(--dashboard-muted-foreground);
+}
+
+.md-patient-card__contacts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.md-patient-card__contacts svg {
+  flex: none;
+}
+
+
+/* Patient information grid */
+
+.md-info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 0.75rem;
+}
+
+.md-info-grid__item {
+  border: 1px solid var(--dashboard-border);
+  border-radius: var(--dashboard-radius-md);
+
+  padding: 0.5rem;
+}
+
+.md-info-grid__item dt {
+  margin: 0;
+
+  font-size: 0.5625rem;
+  color: var(--dashboard-muted-foreground);
+}
+
+.md-info-grid__item dd {
+  margin: 0.125rem 0 0;
+
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   Patient Banner
+   ========================================================================== */
+
+.md-banner {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: var(--dashboard-radius);
+
+  background:
+    linear-gradient(
+      135deg,
+      oklch(0.72 0.11 182),
+      oklch(0.54 0.12 198)
+    );
+
+  color: var(--dashboard-primary-foreground);
+
+  padding: 1.25rem;
+}
+
+.md-banner__ring {
+  position: absolute;
+
+  right: -2.5rem;
+  top: -3rem;
+
+  width: 10rem;
+  height: 10rem;
+
+  border-radius: 999px;
+
+  border: 24px solid oklch(1 0 0 / 12%);
+}
+
+.md-banner__inner {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 8rem;
+  height: 100%;
+}
+
+.md-banner__name {
+  margin: 0;
+
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.md-banner__meta {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 0.25rem;
+
+  font-size: 0.625rem;
+  opacity: 0.8;
+}
+
+
+/* ==========================================================================
+   Content Grid
+   ========================================================================== */
+
+.md-content-grid {
+  display: grid;
+  align-items: start;
+  gap: 1rem;
+}
+
+.md-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+/* ==========================================================================
+   Metrics
+   ========================================================================== */
+
+.md-metrics {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 0.75rem;
+}
+
+.md-metric-card {
+  border: 1px solid var(--dashboard-border);
+
+  background: var(--dashboard-card);
+
+  border-radius: var(--dashboard-radius);
+
+  padding: 0.75rem;
+}
+
+.md-metric-card__icon {
+  display: grid;
+  place-items: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  margin-bottom: 0.75rem;
+
+  border-radius: 999px;
+
+  background: oklch(0.94 0.034 190);
+  color: var(--dashboard-primary);
+}
+
+.md-metric-card__label {
+  margin: 0;
+
+  font-size: 0.625rem;
+  color: var(--dashboard-muted-foreground);
+}
+
+.md-metric-card__value {
+  margin: 0.25rem 0 0;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.md-metric-card__value span {
+  margin-left: 0.125rem;
+
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   Panels
+   ========================================================================== */
+
+.panel {
+  border: 1px solid var(--dashboard-border);
+
+  background: var(--dashboard-card);
+
+  border-radius: var(--dashboard-radius);
+}
+
+.panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 3rem;
+
+  border-bottom: 1px solid var(--dashboard-border);
+
+  padding: 0 1rem;
+}
+
+.panel__header h2 {
+  margin: 0;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   Blood Pressure Chart
+   ========================================================================== */
+
+.md-chart-wrap {
+  padding: 1rem;
+}
+
+.md-chart-legend {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+
+  margin-bottom: 1.25rem;
+
+  font-size: 0.625rem;
+  color: var(--dashboard-muted-foreground);
+}
+
+.md-chart-legend b {
+  color: var(--dashboard-foreground);
+}
+
+.md-chart-legend__dot {
+  display: inline-block;
+
+  width: 0.5rem;
+  height: 0.5rem;
+
+  border-radius: var(--dashboard-radius-pill);
+
+  margin-right: 0.25rem;
+}
+
+.md-chart-legend__dot.hr {
+  background: oklch(0.78 0.06 186);
+}
+
+.md-chart-legend__dot.bp {
+  background: oklch(0.58 0.11 194);
+  margin-left: 0.75rem;
+}
+
+.md-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  height: 12rem;
+
+  gap: 0.25rem;
+
+  border-bottom: 1px solid var(--dashboard-border);
+
+  padding: 0 0.25rem;
+}
+
+.md-chart__col {
+  display: flex;
+
+  height: 100%;
+
+  flex: 1 1 0;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.md-chart__bars {
+  position: relative;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 1.25rem;
+  height: 145px;
+}
+
+.md-chart__bar {
+  position: absolute;
+  bottom: 5px;
+
+  border-radius: var(--dashboard-radius-pill);
+}
+
+.md-chart__bar.bp {
+  width: 0.5rem;
+  background: oklch(0.58 0.11 194);
+}
+
+.md-chart__bar.hr {
+  width: 0.375rem;
+  background: oklch(0.78 0.06 186);
+}
+
+.md-chart__col span {
+  margin-top: 0.5rem;
+
+  font-size: 0.5625rem;
+  color: var(--dashboard-muted-foreground);
+}
+
+
+/* ==========================================================================
+   Reports
+   ========================================================================== */
+
+.md-two-col {
+  display: grid;
+  gap: 1rem;
+}
+
+.md-reports {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  padding: 0.5rem;
+}
+
+.md-report-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  border-radius: var(--dashboard-radius-md);
+
+  padding: 0.5rem;
+}
+
+.md-report-item:hover {
+  background: var(--dashboard-muted);
+}
+
+.md-report-item svg {
+  flex: none;
+  color: var(--dashboard-primary);
+}
+
+.md-report-item__name {
+  margin: 0;
+
+  overflow: hidden;
+
+  font-size: 0.625rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.md-report-item__meta {
+  margin: 0;
+
+  font-size: 0.5625rem;
+  color: var(--dashboard-muted-foreground);
+}
+
+
+/* ==========================================================================
+   Patient Note
+   ========================================================================== */
+
+.md-note {
+  padding: 1rem;
+}
+
+.md-note__author {
+  margin: 0;
+
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.md-note__date {
+  margin: 0.25rem 0 0;
+
+  font-size: 0.5625rem;
+  color: var(--dashboard-muted-foreground);
+}
+
+.md-note__body {
+  margin: 0.75rem 0 0;
+
+  font-size: 0.625rem;
+  line-height: 1.25rem;
+
+  color: var(--dashboard-muted-foreground);
+}
+
+
+/* ==========================================================================
+   Medical Information
+   ========================================================================== */
+
+.md-medinfo-grid {
+  display: grid;
+  gap: 0.75rem;
+
+  border-bottom: 1px solid var(--dashboard-border);
+
+  padding: 1rem;
+}
+
+.md-medinfo-box {
+  border: 1px solid var(--dashboard-border);
+
+  border-radius: var(--dashboard-radius-md);
+
+  padding: 0.75rem;
+}
+
+.md-medinfo-box p {
+  margin: 0 0 0.5rem;
+
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.md-tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.medical-tag {
+  display: inline-flex;
+
+  border-radius: 0.3rem;
+
+  background: var(--dashboard-muted);
+
+  padding: 0.35rem 0.55rem;
+
+  color: var(--dashboard-muted-foreground);
+
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.md-allergy-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.5rem 1rem;
+}
+
+.md-allergy-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  font-size: 0.625rem;
+}
+
+.md-allergy-list span::before {
+  content: "";
+
+  width: 0.375rem;
+  height: 0.375rem;
+
+  border-radius: var(--dashboard-radius-pill);
+
+  background: var(--dashboard-primary);
+}
+
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.md-table-wrap {
+  overflow-x: auto;
+
+  padding: 1rem;
+  padding-top: 0.5rem;
+}
+
+.md-table {
+  width: 100%;
+
+  text-align: left;
+
+  font-size: 0.625rem;
+}
+
+.md-table th.checkbox-col,
+.md-table td.checkbox-col {
+  width: 1.75rem;
+}
+
+.table-head {
+  background: var(--dashboard-muted);
+
+  padding: 0.65rem 0.7rem;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.table-cell {
+  padding: 0.75rem 0.7rem;
+
+  color: var(--dashboard-muted-foreground);
+}
+
+.table-cell.strong {
+  font-weight: 500;
+}
+
+.md-table tbody tr {
+  border-bottom: 1px solid var(--dashboard-border);
+}
+
+.md-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table-sub {
+  color: var(--dashboard-muted-foreground);
+}
+
+
+/* Status */
+
+.status-success {
+  display: inline-flex;
+
+  border-radius: var(--dashboard-radius-pill);
+
+  background: oklch(0.94 0.045 169);
+
+  padding: 0.22rem 0.5rem;
+
+  color: oklch(0.61 0.13 166);
+
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+.status-neutral {
+  display: inline-flex;
+
+  border-radius: var(--dashboard-radius-pill);
+
+  background: var(--dashboard-muted);
+
+  padding: 0.22rem 0.5rem;
+
+  color: var(--dashboard-muted-foreground);
+
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   Appointment Tabs
+   ========================================================================== */
+
+.md-tabs {
+  display: flex;
+
+  border-bottom: 1px solid var(--dashboard-border);
+
+  padding: 0 1rem;
+}
+
+.tab,
+.tab-active {
+  min-width: 6rem;
+
+  border-bottom: 2px solid transparent;
+
+  padding: 0.7rem 1rem;
+
+  color: var(--dashboard-muted-foreground);
+
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.tab-active {
+  border-bottom-color: var(--dashboard-primary);
+
+  color: var(--dashboard-primary);
+
+  font-weight: 700;
+}
+
+.tab:hover {
+  color: var(--dashboard-foreground);
+}
+
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (min-width: 640px) {
+
+  .md-patient-card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .md-patient-card__photo {
+    width: 7.25rem;
+    height: 7.25rem;
+  }
+
+  .md-info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+@media (min-width: 768px) {
+
+  .md-medinfo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .md-two-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (min-width: 1024px) {
+
+  .md-info-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+
+@media (min-width: 1280px) {
+
+  .md-top-grid {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+
+  .md-content-grid {
+    grid-template-columns: 390px minmax(0, 1fr);
+  }
+}
+
+
+/* ==========================================================================
+   Patient-specific Animation
+   ========================================================================== */
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

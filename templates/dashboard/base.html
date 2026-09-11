@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            Medlink
+        {% endblock %}
+    </title>
+
+    <meta
+        name="description"
+        content="{% block description %}
+            Medlink healthcare dashboard
+        {% endblock %}">
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/dashboard.css' %}">
+
+    <script
+        src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"
+        defer>
+    </script>
+
+    {% block extra_css %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+    <div class="md-wrap">
+
+        {% include "dashboard/header.html" %}
+
+        {% include "dashboard/sidebar.html" %}
+
+
+        <main class="md-main">
+
+            <div class="md-container">
+
+                {% block content %}
+                {% endblock %}
+
+                {% include "dashboard/footer.html" %}
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script src="{% static 'js/dashboard.js' %}"></script>
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+
+</html>

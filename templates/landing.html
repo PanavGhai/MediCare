@@ -24,7 +24,7 @@
     rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 
 </head>
 
@@ -59,7 +59,7 @@
         <li><a href="#location">Locate Us</a></li>
       </ul>
 
-      <a href="#" class="btn btn--ghost-light hero__login">
+      <a href="{% url 'login' %}" class="btn btn--ghost-light hero__login">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
@@ -167,7 +167,7 @@
 
       <div class="service-grid">
 
-        <a href="#" class="service-card service-card--large">
+        <a href="#doctors" class="service-card service-card--large" data-department="cardiology">
           <img src="{% static 'images/services/cardiology.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Heart &amp; Circulation</span>
@@ -176,7 +176,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card">
+        <a href="#doctors" class="service-card" data-department="neurology">
           <img src="{% static 'images/services/neurology.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Brain &amp; Nervous System</span>
@@ -184,7 +184,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card service-card--tall">
+        <a href="#doctors" class="service-card service-card--tall" data-department="emergency">
           <img src="{% static 'images/services/emergency.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">24/7 Critical Care</span>
@@ -193,7 +193,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card">
+        <a href="#doctors" class="service-card" data-department="orthopedics">
           <img src="{% static 'images/services/orthopedics.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Bones &amp; Joints</span>
@@ -201,7 +201,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card">
+        <a href="#doctors" class="service-card" data-department="pediatrics">
           <img src="{% static 'images/services/pediatrics.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Children's Health</span>
@@ -209,7 +209,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card service-card--tall">
+        <a href="#doctors" class="service-card service-card--tall" data-department="surgery">
           <img src="{% static 'images/services/surgery.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Advanced Procedures</span>
@@ -218,7 +218,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card service-card--wide">
+        <a href="#doctors" class="service-card service-card--wide" data-department="radiology">
           <img src="{% static 'images/services/radiology.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Diagnostics &amp; Imaging</span>
@@ -226,7 +226,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card">
+        <a href="#doctors" class="service-card" data-department="maternity">
           <img src="{% static 'images/services/maternity.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Women's Health</span>
@@ -234,7 +234,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card">
+        <a href="#doctors" class="service-card" data-department="dental">
           <img src="{% static 'images/services/dental.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Oral Health</span>
@@ -242,7 +242,7 @@
           </div>
         </a>
 
-        <a href="#" class="service-card">
+        <a href="#doctors" class="service-card" data-department="diagnostics">
           <img src="{% static 'images/services/diagnostics.webp' %}" alt="" loading="lazy">
           <div class="service-card__body">
             <span class="service-card__category">Laboratory Services</span>
@@ -286,16 +286,16 @@
 
           <div class="filter-pills">
 
-            <button type="button" class="pill" data-filter="general-medicine" aria-pressed="false">
-              General Medicine
-            </button>
-
             <button type="button" class="pill" data-filter="cardiology" aria-pressed="false">
               Cardiology
             </button>
 
             <button type="button" class="pill" data-filter="neurology" aria-pressed="false">
               Neurology
+            </button>
+
+            <button type="button" class="pill" data-filter="emergency" aria-pressed="false">
+              Emergency
             </button>
 
             <button type="button" class="pill" data-filter="orthopedics" aria-pressed="false">
@@ -306,28 +306,24 @@
               Pediatrics
             </button>
 
-            <button type="button" class="pill" data-filter="dermatology" aria-pressed="false">
-              Dermatology
-            </button>
-
-            <button type="button" class="pill" data-filter="ent" aria-pressed="false">
-              ENT
-            </button>
-
-            <button type="button" class="pill" data-filter="ophthalmology" aria-pressed="false">
-              Ophthalmology
+            <button type="button" class="pill" data-filter="surgery" aria-pressed="false">
+              Surgery
             </button>
 
             <button type="button" class="pill" data-filter="radiology" aria-pressed="false">
               Radiology
             </button>
 
-            <button type="button" class="pill" data-filter="pathology-laboratory" aria-pressed="false">
-              Pathology Laboratory
+            <button type="button" class="pill" data-filter="maternity" aria-pressed="false">
+              Maternity
             </button>
 
-            <button type="button" class="pill" data-filter="emergency" aria-pressed="false">
-              Emergency
+            <button type="button" class="pill" data-filter="dental" aria-pressed="false">
+              Dental
+            </button>
+
+            <button type="button" class="pill" data-filter="diagnostics" aria-pressed="false">
+              Diagnostics
             </button>
 
           </div>
@@ -363,10 +359,10 @@
 
 
         <!-- ===================================================
-         DOCTOR 1
-         Department: Cardiology
-         doctor_id: 1
-         =================================================== -->
+     DOCTOR 1
+     Department: Cardiology
+     doctor_id: 1
+     =================================================== -->
 
         <article class="doctor-card" data-doctor-id="1" data-name="Dr. Omar Karim" data-department="cardiology"
           data-search="omar karim cardiology heart interventional cardiology">
@@ -410,13 +406,13 @@
 
 
         <!-- ===================================================
-         DOCTOR 2
-         Department: Neurology
-         doctor_id: 2
-         =================================================== -->
+     DOCTOR 2
+     Department: Neurology
+     doctor_id: 2
+     =================================================== -->
 
         <article class="doctor-card" data-doctor-id="2" data-name="Dr. Amira Siddiqua" data-department="neurology"
-          data-search="amira siddiqua neurology stroke epilepsy neurological">
+          data-search="amira siddiqua neurology stroke epilepsy neurological disorders">
 
           <span class="doctor-card__rating">
             <span aria-hidden="true">★</span> 4.8
@@ -436,7 +432,7 @@
 
             <p>
               Leads stroke recovery and epilepsy care with a patient-first
-              approach to neurodegenerative disorders.
+              approach to neurological disorders and neurodegenerative conditions.
             </p>
 
             <div class="doctor-card__actions">
@@ -457,20 +453,67 @@
 
 
         <!-- ===================================================
-         DOCTOR 3
-         Department: Orthopedics
-         doctor_id: 3
-         =================================================== -->
+     DOCTOR 3
+     Department: Emergency
+     doctor_id: 3
+     =================================================== -->
 
-        <article class="doctor-card" data-doctor-id="3" data-name="Dr. Liam Bennett" data-department="orthopedics"
-          data-search="liam bennett orthopedics orthopedic sports injury joints">
+        <article class="doctor-card" data-doctor-id="3" data-name="Dr. Daniel Brooks" data-department="emergency"
+          data-search="daniel brooks emergency critical care trauma urgent care">
+
+          <span class="doctor-card__rating">
+            <span aria-hidden="true">★</span> 4.9
+          </span>
+
+          <div class="doctor-card__portrait">
+            <img src="{% static 'images/doctors/3.webp' %}" alt="Dr. Daniel Brooks" loading="lazy">
+          </div>
+
+          <div class="doctor-card__body">
+
+            <h3>Dr. Daniel Brooks</h3>
+
+            <span class="doctor-card__spec">
+              Emergency Medicine
+            </span>
+
+            <p>
+              Experienced in emergency and trauma care, providing rapid
+              assessment and treatment for critical and urgent medical conditions.
+            </p>
+
+            <div class="doctor-card__actions">
+
+              <a href="#" class="btn btn--outline-navy">
+                View Details
+              </a>
+
+              <a href="#" class="btn btn--mint">
+                Book Appointment
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- ===================================================
+     DOCTOR 4
+     Department: Orthopedics
+     doctor_id: 4
+     =================================================== -->
+
+        <article class="doctor-card" data-doctor-id="4" data-name="Dr. Liam Bennett" data-department="orthopedics"
+          data-search="liam bennett orthopedics orthopedic sports injury joints replacement">
 
           <span class="doctor-card__rating">
             <span aria-hidden="true">★</span> 4.7
           </span>
 
           <div class="doctor-card__portrait">
-            <img src="{% static 'images/doctors/3.webp' %}" alt="Dr. Liam Bennett" loading="lazy">
+            <img src="{% static 'images/doctors/4.webp' %}" alt="Dr. Liam Bennett" loading="lazy">
           </div>
 
           <div class="doctor-card__body">
@@ -504,20 +547,114 @@
 
 
         <!-- ===================================================
-         DOCTOR 4
-         Department: Dermatology
-         doctor_id: 4
-         =================================================== -->
+     DOCTOR 5
+     Department: Pediatrics
+     doctor_id: 5
+     =================================================== -->
 
-        <article class="doctor-card" data-doctor-id="4" data-name="Dr. Priya Nair" data-department="dermatology"
-          data-search="priya nair dermatology skin melanoma laser">
+        <article class="doctor-card" data-doctor-id="5" data-name="Dr. Sophia Williams" data-department="pediatrics"
+          data-search="sophia williams pediatrics children child newborn infant pediatric care">
+
+          <span class="doctor-card__rating">
+            <span aria-hidden="true">★</span> 4.8
+          </span>
+
+          <div class="doctor-card__portrait">
+            <img src="{% static 'images/doctors/5.webp' %}" alt="Dr. Sophia Williams" loading="lazy">
+          </div>
+
+          <div class="doctor-card__body">
+
+            <h3>Dr. Sophia Williams</h3>
+
+            <span class="doctor-card__spec">
+              Pediatrics
+            </span>
+
+            <p>
+              Provides compassionate pediatric care for children, infants,
+              and newborns with a focus on healthy development and prevention.
+            </p>
+
+            <div class="doctor-card__actions">
+
+              <a href="#" class="btn btn--outline-navy">
+                View Details
+              </a>
+
+              <a href="#" class="btn btn--mint">
+                Book Appointment
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- ===================================================
+     DOCTOR 6
+     Department: Surgery
+     doctor_id: 6
+     =================================================== -->
+
+        <article class="doctor-card" data-doctor-id="6" data-name="Dr. Alexander Reed" data-department="surgery"
+          data-search="alexander reed surgery surgeon surgical procedures minimally invasive">
 
           <span class="doctor-card__rating">
             <span aria-hidden="true">★</span> 4.9
           </span>
 
           <div class="doctor-card__portrait">
-            <img src="{% static 'images/doctors/4.webp' %}" alt="Dr. Priya Nair" loading="lazy">
+            <img src="{% static 'images/doctors/6.webp' %}" alt="Dr. Alexander Reed" loading="lazy">
+          </div>
+
+          <div class="doctor-card__body">
+
+            <h3>Dr. Alexander Reed</h3>
+
+            <span class="doctor-card__spec">
+              General Surgery
+            </span>
+
+            <p>
+              Specializes in advanced surgical procedures with an emphasis
+              on minimally invasive techniques and patient recovery.
+            </p>
+
+            <div class="doctor-card__actions">
+
+              <a href="#" class="btn btn--outline-navy">
+                View Details
+              </a>
+
+              <a href="#" class="btn btn--mint">
+                Book Appointment
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- ===================================================
+     DOCTOR 7
+     Department: Radiology
+     doctor_id: 7
+     =================================================== -->
+
+        <article class="doctor-card" data-doctor-id="7" data-name="Dr. Priya Nair" data-department="radiology"
+          data-search="priya nair radiology imaging x-ray mri ct scan ultrasound">
+
+          <span class="doctor-card__rating">
+            <span aria-hidden="true">★</span> 4.9
+          </span>
+
+          <div class="doctor-card__portrait">
+            <img src="{% static 'images/doctors/7.webp' %}" alt="Dr. Priya Nair" loading="lazy">
           </div>
 
           <div class="doctor-card__body">
@@ -525,12 +662,12 @@
             <h3>Dr. Priya Nair</h3>
 
             <span class="doctor-card__spec">
-              Dermatology
+              Radiology
             </span>
 
             <p>
-              Expert care from cosmetic skin treatments to complex dermatitis
-              and melanoma screening, using the latest technology.
+              Expert care in diagnostic imaging, including X-rays, MRIs,
+              CT scans, and ultrasounds.
             </p>
 
             <div class="doctor-card__actions">
@@ -551,24 +688,67 @@
 
 
         <!-- ===================================================
-         DOCTOR 5
-         Department: Urology
-         
-         NOTE:
-         Urologist is not in your new department list.
-         Therefore this sample doctor is moved to General
-         Medicine until you add a Urology department.
-         =================================================== -->
+     DOCTOR 8
+     Department: Maternity
+     doctor_id: 8
+     =================================================== -->
 
-        <article class="doctor-card" data-doctor-id="5" data-name="Dr. Marcus Lee" data-department="general-medicine"
-          data-search="marcus lee general medicine kidney prostate urology surgery">
+        <article class="doctor-card" data-doctor-id="8" data-name="Dr. Elena Martinez" data-department="maternity"
+          data-search="elena martinez maternity obstetrics pregnancy childbirth prenatal women health">
+
+          <span class="doctor-card__rating">
+            <span aria-hidden="true">★</span> 4.9
+          </span>
+
+          <div class="doctor-card__portrait">
+            <img src="{% static 'images/doctors/8.webp' %}" alt="Dr. Elena Martinez" loading="lazy">
+          </div>
+
+          <div class="doctor-card__body">
+
+            <h3>Dr. Elena Martinez</h3>
+
+            <span class="doctor-card__spec">
+              Obstetrics &amp; Maternity
+            </span>
+
+            <p>
+              Provides comprehensive maternity care from prenatal support
+              through childbirth and postpartum recovery.
+            </p>
+
+            <div class="doctor-card__actions">
+
+              <a href="#" class="btn btn--outline-navy">
+                View Details
+              </a>
+
+              <a href="#" class="btn btn--mint">
+                Book Appointment
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- ===================================================
+     DOCTOR 9
+     Department: Dental
+     doctor_id: 9
+     =================================================== -->
+
+        <article class="doctor-card" data-doctor-id="9" data-name="Dr. Marcus Lee" data-department="dental"
+          data-search="marcus lee dental dentistry implants whitening oral health surgery">
 
           <span class="doctor-card__rating">
             <span aria-hidden="true">★</span> 4.6
           </span>
 
           <div class="doctor-card__portrait">
-            <img src="{% static 'images/doctors/5.webp' %}" alt="Dr. Marcus Lee" loading="lazy">
+            <img src="{% static 'images/doctors/9.webp' %}" alt="Dr. Marcus Lee" loading="lazy">
           </div>
 
           <div class="doctor-card__body">
@@ -576,12 +756,12 @@
             <h3>Dr. Marcus Lee</h3>
 
             <span class="doctor-card__spec">
-              General Medicine
+              Dental Surgery
             </span>
 
             <p>
-              A decade of expertise in kidney health, prostate care, and
-              minimally invasive surgical solutions.
+              A decade of expertise in dental implants, whitening, and
+              minimally invasive surgical solutions for complete oral health.
             </p>
 
             <div class="doctor-card__actions">
@@ -602,33 +782,33 @@
 
 
         <!-- ===================================================
-         DOCTOR 6
-         Department: Cardiology
-         doctor_id: 6
-         =================================================== -->
+     DOCTOR 10
+     Department: Diagnostics
+     doctor_id: 10
+     =================================================== -->
 
-        <article class="doctor-card" data-doctor-id="6" data-name="Dr. Sofia Reyes" data-department="cardiology"
-          data-search="sofia reyes cardiology preventive heart echocardiography">
+        <article class="doctor-card" data-doctor-id="10" data-name="Dr. Hannah Carter" data-department="diagnostics"
+          data-search="hannah carter diagnostics laboratory pathology blood tests clinical laboratory">
 
           <span class="doctor-card__rating">
             <span aria-hidden="true">★</span> 4.8
           </span>
 
           <div class="doctor-card__portrait">
-            <img src="{% static 'images/doctors/6.webp' %}" alt="Dr. Sofia Reyes" loading="lazy">
+            <img src="{% static 'images/doctors/10.webp' %}" alt="Dr. Hannah Carter" loading="lazy">
           </div>
 
           <div class="doctor-card__body">
 
-            <h3>Dr. Sofia Reyes</h3>
+            <h3>Dr. Hannah Carter</h3>
 
             <span class="doctor-card__spec">
-              Cardiology
+              Diagnostics
             </span>
 
             <p>
-              A preventive cardiologist focused on lifestyle-based heart
-              care, echocardiography, and long-term cardiovascular wellness.
+              Specializes in laboratory diagnostics and clinical testing,
+              helping provide accurate results for timely medical decisions.
             </p>
 
             <div class="doctor-card__actions">
@@ -688,165 +868,354 @@
       <div class="mc-marquee">
         <div class="mc-marquee__track">
 
+          <!-- REVIEW 1 -->
           <article class="mc-card">
             <span class="mc-card__label">Medical Center Patient</span>
             <p class="mc-card__quote">
-              The entire team was incredibly professional and caring. From
-              consultation to treatment, I always felt I was in safe hands.
-              <span class="mc-card__mark" aria-hidden="true">”</span>
+              The entire team was incredibly professional and caring. From consultation to
+              treatment, I always felt I was in safe hands. <span class="mc-card__mark" aria-hidden="true">”</span>
             </p>
             <div class="mc-card__footer">
               <div class="mc-card__patient">
-                <span class="mc-card__avatar" aria-hidden="true">
-                  <img src="{% static 'images/patients/review-1.webp' %}" alt="Aarav Sharma">
-                </span>
-                <div>
-                  <strong>Aarav Sharma</strong>
-                  <span>Surgeon Clinic</span>
-                </div>
+                <span class="mc-card__avatar" aria-hidden="true"><img src="{% static 'images/patients/review-1.webp' %}" alt="Aarav Sharma"></span>
+                <div> <strong>Aarav Sharma</strong> <span>Surgeon Clinic</span> </div>
               </div>
               <span class="mc-card__stars" aria-label="4.9 out of 5 stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </span>
             </div>
           </article>
 
+          <!-- REVIEW 2 -->
           <article class="mc-card">
             <span class="mc-card__label">Medical Center Patient</span>
             <p class="mc-card__quote">
-              Booking an appointment was simple and the doctors took the
-              time to explain everything clearly. Clean, modern facility.
-              <span class="mc-card__mark" aria-hidden="true">”</span>
+              Booking an appointment was simple and the doctors took the time to explain everything clearly. Clean,
+              modern facility. <span class="mc-card__mark" aria-hidden="true">”</span>
             </p>
             <div class="mc-card__footer">
               <div class="mc-card__patient">
-                <span class="mc-card__avatar" aria-hidden="true">
-                  <img src="{% static 'images/patients/review-2.webp' %}" alt="Maya Patel">
-                </span>
-                <div>
-                  <strong>Maya Patel</strong>
-                  <span>Cardiology Clinic</span>
-                </div>
+                <span class="mc-card__avatar" aria-hidden="true"><img src="{% static 'images/patients/review-2.webp' %}" alt="Maya Patel"></span>
+                <div> <strong>Maya Patel</strong> <span>Cardiology Clinic</span> </div>
               </div>
               <span class="mc-card__stars" aria-label="4.8 out of 5 stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
               </span>
             </div>
           </article>
 
+          <!-- REVIEW 3 -->
           <article class="mc-card">
             <span class="mc-card__label">Medical Center Patient</span>
             <p class="mc-card__quote">
-              I was impressed by how quickly my concerns were addressed.
-              Everyone was helpful, respectful, and genuinely attentive.
-              <span class="mc-card__mark" aria-hidden="true">”</span>
+              I was impressed by how quickly my concerns were addressed. Everyone was helpful, respectful, and
+              genuinely attentive. <span class="mc-card__mark" aria-hidden="true">”</span>
             </p>
             <div class="mc-card__footer">
               <div class="mc-card__patient">
-                <span class="mc-card__avatar" aria-hidden="true">
-                  <img src="{% static 'images/patients/review-3.webp' %}" alt="Daniel Wilson">
-                </span>
-                <div>
-                  <strong>Daniel Wilson</strong>
-                  <span>Neurology Clinic</span>
-                </div>
+                <span class="mc-card__avatar" aria-hidden="true"><img src="{% static 'images/patients/review-3.webp' %}" alt="Daniel Wilson"></span>
+                <div> <strong>Daniel Wilson</strong> <span>Neurology Clinic</span> </div>
               </div>
               <span class="mc-card__stars" aria-label="4.7 out of 5 stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
               </span>
             </div>
           </article>
 
-          <!-- duplicate set — required for the seamless marquee loop -->
-
-          <article class="mc-card" aria-hidden="true">
+          <!-- REVIEW 4 -->
+          <article class="mc-card">
             <span class="mc-card__label">Medical Center Patient</span>
             <p class="mc-card__quote">
-              The entire team was incredibly professional and caring. From
-              consultation to treatment, I always felt I was in safe hands.
-              <span class="mc-card__mark" aria-hidden="true">”</span>
+              Dr. Bennett was patient, thorough, and explained my treatment options without making me feel rushed. The
+              whole experience was much easier than I expected. <span class="mc-card__mark" aria-hidden="true">”</span>
             </p>
             <div class="mc-card__footer">
               <div class="mc-card__patient">
-                <span class="mc-card__avatar" aria-hidden="true">
-                  <img src="{% static 'images/patients/review-1.webp' %}" alt="Aarav Sharma">
-                </span>
-                <div>
-                  <strong>Aarav Sharma</strong>
-                  <span>Surgeon Clinic</span>
-                </div>
+                <span class="mc-card__avatar" aria-hidden="true"><img src="{% static 'images/patients/review-4.webp' %}" alt="Rohan Mehta"></span>
+                <div> <strong>Rohan Mehta</strong> <span>Orthopedics Clinic</span> </div>
               </div>
-              <span class="mc-card__stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
+              <span class="mc-card__stars" aria-label="4.6 out of 5 stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+            </div>
+          </article>
+          
+          <!-- REVIEW 5 -->
+          <article class="mc-card">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              The nursing staff were kind and attentive throughout my stay. Everything was well organized, and I always
+              knew what was happening next. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar" aria-hidden="true"><img src="{% static 'images/patients/review-5.webp' %}" alt="Ananya Rao"></span>
+                <div> <strong>Ananya Rao</strong> <span>Medical Center Patient</span> </div>
+              </div>
+              <span class="mc-card__stars" aria-label="5 out of 5 stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </span>
             </div>
           </article>
 
-          <article class="mc-card" aria-hidden="true">
+          <!-- REVIEW 6 -->
+          <article class="mc-card">
             <span class="mc-card__label">Medical Center Patient</span>
             <p class="mc-card__quote">
-              Booking an appointment was simple and the doctors took the
-              time to explain everything clearly. Clean, modern facility.
-              <span class="mc-card__mark" aria-hidden="true">”</span>
+              My diagnostic tests were completed quickly and the staff explained the process clearly. Results were easy
+              to access and my doctor followed up promptly. <span class="mc-card__mark" aria-hidden="true">”</span>
             </p>
             <div class="mc-card__footer">
               <div class="mc-card__patient">
-                <span class="mc-card__avatar" aria-hidden="true">
-                  <img src="{% static 'images/patients/review-2.webp' %}" alt="Maya Patel">
-                </span>
-                <div>
-                  <strong>Maya Patel</strong>
-                  <span>Cardiology Clinic</span>
-                </div>
+                <span class="mc-card__avatar" aria-hidden="true"><img src="{% static 'images/patients/review-6.webp' %}" alt="Vikram Singh"></span>
+                <div> <strong>Vikram Singh</strong> <span>Diagnostics</span> </div>
               </div>
-              <span class="mc-card__stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
+              <span class="mc-card__stars" aria-label="4.5 out of 5 stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
               </span>
             </div>
           </article>
 
-          <article class="mc-card" aria-hidden="true">
+          <!-- REVIEW 7 -->
+          <article class="mc-card">
             <span class="mc-card__label">Medical Center Patient</span>
             <p class="mc-card__quote">
-              I was impressed by how quickly my concerns were addressed.
-              Everyone was helpful, respectful, and genuinely attentive.
-              <span class="mc-card__mark" aria-hidden="true">”</span>
+              We had a very good experience with the pediatric team. They were gentle with my daughter and took the
+              time to answer all of our questions. <span class="mc-card__mark" aria-hidden="true">”</span>
             </p>
             <div class="mc-card__footer">
               <div class="mc-card__patient">
-                <span class="mc-card__avatar" aria-hidden="true">
-                  <img src="{% static 'images/patients/review-3.webp' %}" alt="Daniel Wilson">
-                </span>
-                <div>
-                  <strong>Daniel Wilson</strong>
-                  <span>Neurology Clinic</span>
-                </div>
+                <span class="mc-card__avatar" aria-hidden="true"><img src="{% static 'images/patients/review-7.webp' %}" alt="Priya Kapoor"></span>
+                <div> <strong>Priya Kapoor</strong> <span>Pediatrics Clinic</span> </div>
+              </div>
+              <span class="mc-card__stars" aria-label="4.8 out of 5 stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+            </div>
+          </article>
+
+          <!-- REVIEW 8 -->
+          <article class="mc-card">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              The facility is excellent and the medical team is clearly experienced. There was a little waiting during
+              my visit, but the quality of care made it worthwhile. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar" aria-hidden="true"><img src="{% static 'images/patients/review-8.webp' %}" alt="Arjun Malhotra"></span>
+                <div> <strong>Arjun Malhotra</strong> <span>Emergency Care</span> </div>
+              </div>
+              <span class="mc-card__stars" aria-label="4.2 out of 5 stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+            </div>
+          </article>
+
+          <!-- ===================================================== DUPLICATE SET — REQUIRED FOR SEAMLESS MARQUEE LOOP ====================================================== -->
+
+          <!-- REVIEW 1 DUPLICATE -->
+          <article class="mc-card" aria-hidden="true">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              The entire team was incredibly professional and caring. From consultation to treatment, I always felt I
+              was in safe hands. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar"><img src="{% static 'images/patients/review-1.webp' %}" alt=""></span>
+                <div> <strong>Aarav Sharma</strong> <span>Surgeon Clinic</span> </div>
               </div>
               <span class="mc-card__stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </span>
+            </div>
+          </article>
+
+          <!-- REVIEW 2 DUPLICATE -->
+          <article class="mc-card" aria-hidden="true">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              Booking an appointment was simple and the doctors took the time to explain everything clearly. Clean,
+              modern facility. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar"><img src="{% static 'images/patients/review-2.webp' %}" alt=""></span>
+                <div> <strong>Maya Patel</strong> <span>Cardiology Clinic</span> </div>
+              </div>
+              <span class="mc-card__stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+            </div>
+          </article>
+
+          <!-- REVIEW 3 DUPLICATE -->
+          <article class="mc-card" aria-hidden="true">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              I was impressed by how quickly my concerns were addressed. Everyone was helpful, respectful, and
+              genuinely attentive. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar"><img src="{% static 'images/patients/review-3.webp' %}" alt=""></span>
+                <div> <strong>Daniel Wilson</strong> <span>Neurology Clinic</span> </div>
+              </div>
+              <span class="mc-card__stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+            </div>
+          </article>
+
+          <!-- REVIEW 4 DUPLICATE -->
+          <article class="mc-card" aria-hidden="true">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              Dr. Bennett was patient, thorough, and explained my treatment options without making me feel rushed. The
+              whole experience was much easier than I expected. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar"><img src="{% static 'images/patients/review-4.webp' %}" alt=""></span>
+                <div> <strong>Rohan Mehta</strong> <span>Orthopedics Clinic</span> </div>
+              </div>
+              <span class="mc-card__stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+            </div>
+          </article>
+
+          <!-- REVIEW 5 DUPLICATE -->
+          <article class="mc-card" aria-hidden="true">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              The nursing staff were kind and attentive throughout my stay. Everything was well organized, and I always
+              knew what was happening next. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar"><img src="{% static 'images/patients/review-5.webp' %}" alt=""></span>
+                <div> <strong>Ananya Rao</strong> <span>Medical Center Patient</span> </div>
+              </div>
+              <span class="mc-card__stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </span> 
+            </div>
+          </article>
+          
+          <!-- REVIEW 6 DUPLICATE -->
+          <article class="mc-card" aria-hidden="true">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              My diagnostic tests were completed quickly and the staff explained the process clearly. Results were easy
+              to access and my doctor followed up promptly. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar"><img src="{% static 'images/patients/review-6.webp' %}" alt=""></span>
+                <div> <strong>Vikram Singh</strong> <span>Diagnostics</span> </div>
+              </div>
+              <span class="mc-card__stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+            </div>
+          </article>
+          <!-- REVIEW 7 DUPLICATE -->
+          <article class="mc-card" aria-hidden="true">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              We had a very good experience with the pediatric team. They were gentle with my daughter and took the
+              time to answer all of our questions. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar"><img src="{% static 'images/patients/review-7.webp' %}" alt=""></span>
+                <div> <strong>Priya Kapoor</strong> <span>Pediatrics Clinic</span> </div>
+              </div>
+              <span class="mc-card__stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+            </div>
+          </article>
+          <!-- REVIEW 8 DUPLICATE -->
+          <article class="mc-card" aria-hidden="true">
+            <span class="mc-card__label">Medical Center Patient</span>
+            <p class="mc-card__quote">
+              The facility is excellent and the medical team is clearly experienced. There was a little waiting during
+              my visit, but the quality of care made it worthwhile. <span class="mc-card__mark" aria-hidden="true">”</span>
+            </p>
+            <div class="mc-card__footer">
+              <div class="mc-card__patient">
+                <span class="mc-card__avatar"><img src="{% static 'images/patients/review-8.webp' %}" alt=""></span>
+                <div> <strong>Arjun Malhotra</strong> <span>Emergency Care</span> </div>
+              </div>
+              <span class="mc-card__stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
               </span>
             </div>
           </article>
@@ -1004,21 +1373,21 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const backToTop = document.querySelector('.back-to-top');
+      const backToTop = document.querySelector('.back-to-top');
 
-        if (!backToTop) return;
+      if (!backToTop) return;
 
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
     });
-</script>
+  </script>
 
-  <script src="{% static 'js/scripts.js' %}"></script>
+  <script src="{% static 'js/landing.js' %}"></script>
 
 </body>
 
