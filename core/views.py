@@ -5,7 +5,7 @@ from medicare.supabase_client import supabase
 
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 
 from .decorators import role_required
@@ -242,17 +242,6 @@ def register_patient(request):
             {"error": str(error)},
             status=500
         )
-
-
-@require_POST
-def logout_patient(request):
-    request.session.pop("supabase_user_id", None)
-    request.session.flush()
-
-    return JsonResponse({
-        "success": True,
-        "message": "Logged out successfully."
-    })
 
 
 @role_required("Patient")
@@ -528,3 +517,9 @@ def doctor_dashboard(request):
 @role_required("Admin")
 def admin_dashboard(request):
     return render(request, "admin/dashboard.html")
+
+
+@require_POST
+def logout(request):
+    request.session.flush()
+    return redirect("login")
